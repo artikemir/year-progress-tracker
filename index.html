@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Year Progress Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .progress-bar {
+            width: 80%;
+            background-color: #ddd;
+            border-radius: 25px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2025 Year Progress Tracker</h1>
+        <p id="daysPassed"></p>
+        <p id="daysRemaining"></p>
+        <p id="percentagePassed"></p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const startDate = new Date('2025-01-01');
+            const endDate = new Date('2025-12-31');
+            const today = new Date();
+
+            const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+            const passedDays = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
+            const remainingDays = totalDays - passedDays;
+
+            const passedPercentage = ((passedDays / totalDays) * 100).toFixed(2);
+
+            document.getElementById('daysPassed').innerText = `Days Passed: ${passedDays}`;
+            document.getElementById('daysRemaining').innerText = `Days Remaining: ${remainingDays}`;
+            document.getElementById('percentagePassed').innerText = `Year Completed: ${passedPercentage}%`;
+            document.getElementById('progressFill').style.width = `${passedPercentage}%`;
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
